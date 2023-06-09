@@ -1,8 +1,17 @@
 # include "libftprintf.h"
 
-int ft_printf(void) //(const char *, ...)
+int ft_printf(const char *format, ...)
 {
-    write(1, "Test", 4);
-    printf("\n Test len: %ld\n", ft_strlen("test_ch"));
+    va_list ap;
+    char ch;
+
+    va_start(ap, format);
+    while (*format)
+    {
+        ch = *format;
+        write(1, &ch, 1);
+        format++;
+    }
+    va_end(ap);
     return(1);
 }
