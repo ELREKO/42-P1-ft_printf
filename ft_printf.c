@@ -3,13 +3,25 @@
 int ft_printf(const char *format, ...)
 {
     va_list ap;
-    char ch;
+    char *mem;
 
     va_start(ap, format);
     while (*format)
     {
-        ch = *format;
-        write(1, &ch, 1);
+        if (*format == '%')
+        {
+            format = ft_memchr(format, '%', ft_strlen(format));
+            if (format[1] == 's')
+            {
+                mem = va_arg(ap, char*);
+                write(1, mem, ft_strlen(mem));    
+            }
+            if (format[2] == '%')
+                format++;
+            else
+                format = format+2;
+        }
+        write(1, &*format, 1);
         format++;
     }
     va_end(ap);

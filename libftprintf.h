@@ -7,5 +7,6 @@
 # include "libft/libft.h"
 
 int ft_printf(const char *, ...);
+void ft_print_str_sep(const char *str, int ch);
 
 #endif
