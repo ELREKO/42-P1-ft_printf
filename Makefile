@@ -6,8 +6,13 @@ AR				=	ar
 ARFLAGS 		=	rcs
 RM				=	rm -rf
 
-SRC				=	ft_printf
-SRCS 			=	$(addsuffix .c, $(SRC))
+SRCS			=	ft_printf.c \
+				ft_printf_char.c \
+				ft_printf_string.c \
+				ft_printf_ptr.c \
+				ft_printf_int.c \
+				ft_printf_hex_low.c \
+				ft_printf_hex_up.c 
 
 OBJ_DIR			=	obj
 OBJS			=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -37,6 +42,8 @@ clean:
 fclean:				clean
 					make -C $(LIBFT_PATH) fclean
 					$(RM) $(NAME)
+					rm -f program
+					rm -f test
 
 re:					fclean all
 
