@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkost <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 21:08:17 by rkost             #+#    #+#             */
-/*   Updated: 2023/05/19 12:24:39 by rkost            ###   ########.fr       */
+/*   Created: 2023/06/15 13:40:42 by rkost             #+#    #+#             */
+/*   Updated: 2023/06/15 13:42:15 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_str_sep(const char *str, int ch)
+int	ft_printf_hex(unsigned int arg, char form)
 {
-	while (*str != '\0')
-	{
-		if (*str != (char)ch)
-			write(1, str++, 1);
-		else
-			break;
-	}
+	int		len;
+	char	*base;
+
+	if (form == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	len = write_out_nbr(arg, base);
+	return (len);
 }

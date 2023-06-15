@@ -10,9 +10,10 @@ SRCS			=	ft_printf.c \
 				ft_printf_char.c \
 				ft_printf_string.c \
 				ft_printf_ptr.c \
+				ft_putnbr_base.c \
 				ft_printf_int.c \
-				ft_printf_hex_low.c \
-				ft_printf_hex_up.c 
+				ft_printf_hex.c \
+
 
 OBJ_DIR			=	obj
 OBJS			=	$(SRCS:%.c=$(OBJ_DIR)/%.o)

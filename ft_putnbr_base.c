@@ -1,45 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_int.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkost <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 13:44:49 by rkost             #+#    #+#             */
-/*   Updated: 2023/06/15 13:47:33 by rkost            ###   ########.fr       */
+/*   Created: 2023/06/15 15:20:26 by rkost             #+#    #+#             */
+/*   Updated: 2023/06/15 15:28:52 by rkost            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf_uns_int(unsigned int arg)
+static int	count_nummer(int arg, int base)
 {
-	int		len;
-	char	*base;
+	int	count;
 
-	base = "0123456789";
-	len = write_out_nbr(arg, base);
-	return (len);
+	count = 0;
+	while (arg > base)
+	{
+		arg = arg / base;
+		count++;
+	}
+	return (count + 1);
 }
 
-int	ft_printf_int(int arg)
+int	write_out_nbr(long long arg, char *base)
 {
+	char	ch;
 	int		len;
-	char	*base;
+	int		base_len;
 
-	base = "0123456789";
-	if (arg == -2147483648)
+	base_len = ft_strlen(base);
+	len = count_nummer(arg, base_len);
+	while (arg > base_len)
 	{
-		write(1, "-2147483648", 11);
-		return (11);
+		write_out_nbr(arg / base_len, base);
+		arg = arg - ((arg / base_len) * base_len);
 	}
-	if (arg < 0)
+	if (arg <= base_len)
 	{
-		arg *= -1;
-		write(1, "-", 1);
-		len = 1 + write_out_nbr(arg, base);
+		ch = base[arg];
+		write(1, &ch, 1);
 	}
-	else
-		len = 0 + write_out_nbr(arg, base);
 	return (len);
 }
