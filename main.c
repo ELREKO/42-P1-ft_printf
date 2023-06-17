@@ -50,6 +50,19 @@ void    test_s(void)
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
+void	test_p(void)
+{
+	int	x, y;
+    void *ptr = "Test";
+	x = 0;
+	y = 0;
+	ft_printheader("Test %p");
+	printf("Testing: (\"\\t%%p\\n\", ptr)\n");
+	x +=    printf("  Ft\t:\t%p\n", ptr);
+	y += ft_printf("  Ft\t:\t%p\n", ptr);
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+}
+
 void    test_i(void)
 {
     int	x, y;
@@ -136,25 +149,13 @@ int main(void)
 
     //test_s();
 
-    //test_p(void);
+    test_p();
 
     //test_i();
 
     //test_u();
 
    // test_percent();
-
-    int num = 42;
-    int *ptr = &num;  // Speicheradresse von 'num' in 'ptr' speichern
-
-    printf("Die Speicheradresse von 'num' ist: %p\n", (void*)&num);
-    printf("Der Wert von 'ptr' ist: %p\n \n \n", (void*)ptr);
-    void *Test = "Test";
-    printf("Pointer printf %p\n", Test);
-    ft_printf("%p\n", Test);
-
-
-printf("%lu\n", -ULONG_MAX );
 
 return (0);
 }

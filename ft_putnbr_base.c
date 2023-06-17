@@ -28,11 +28,11 @@ static int	count_nummer(long long arg, int base)
 	return (count + 1);
 }
 
-int	write_out_nbr(long long arg, char *base)
+int	write_out_nbr(unsigned long long arg, char *base)
 {
 	char	ch;
 	int		len;
-	int		base_len;
+	unsigned int		base_len;
 
 	base_len = ft_strlen(base);
 	len = count_nummer(arg, base_len);
