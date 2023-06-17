@@ -21,7 +21,7 @@ static int	ft_flagcheck(size_t ui_count, const char *str_give, va_list ap)
 	if (str_give[ui_count] == 's')
 		len = ft_printf_string(va_arg(ap, char *));
 	if (str_give[ui_count] == 'p')
-		len = ft_printf_ptr(va_arg(ap, void *));
+		len = ft_printf_ptr(va_arg(ap, unsigned long));
 	if (str_give[ui_count] == 'd')
 		len = ft_printf_int(va_arg(ap, int));
 	if (str_give[ui_count] == 'i')
@@ -44,26 +44,38 @@ static int	ft_write(const char *str_give, va_list ap)
 {
 	size_t	ui_count;
 	size_t	i_check_flags;
-	int		len;
+	int		i_len;
+	int		i_spec_write;
 
 	ui_count = 0;
-	len = 0;
+	i_len = 0;
+	i_spec_write = 0;
 	while (str_give[ui_count] != '\0')
 	{
-		if (str_give[ui_count] == '%')
+		while (str_give[ui_count] == '%')
 		{
 			ui_count++;
+			i_spec_write++;
 			i_check_flags = 0;
 			while (i_check_flags < ft_strlen("cspdiuxX%"))
 			{
 				if (str_give[ui_count] == "cspdiuxX%"[i_check_flags++])
-					len = len + ft_flagcheck(ui_count, str_give, ap);
+				{
+					//printf ("\nui_cout: %ld, strgive[uicount] %c befor:%c \n", ui_count, str_give[ui_count], str_give[ui_count-1] );
+					i_len = ft_flagcheck(ui_count, str_give, ap) + i_len;
+				}
 			}
+			//printf("\ni_len: %d\n", i_len);
 			ui_count++;
+			//printf("\nui_count %ld-----\n", ui_count);
 		}
+		if (str_give[ui_count] == '\0')
+			break;
+		//printf("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!before write|%c|", str_give[ui_count]);
 		write(1, &str_give[ui_count++], 1);
 	}
-	return (ui_count + len);
+	//printf("ui_count: %ld ; i_len: %d; i_spec_write: %d", ui_count, i_len, i_spec_write);
+	return (ui_count + i_len - (i_spec_write * 2));
 }
 
 int	ft_printf(const char *format, ...)
@@ -72,10 +84,14 @@ int	ft_printf(const char *format, ...)
 	char	*str_give;
 	int		len;
 
+	len = 0;
 	str_give = ft_strdup(format);
-	va_start(ap, format);
-	len = ft_write(str_give, ap);
-	va_end(ap);
+	if (str_give != NULL)
+	{
+		va_start(ap, format);
+		len = ft_write(str_give, ap);
+		va_end(ap);
+	}
 	free(str_give);
 	return (len);
 }

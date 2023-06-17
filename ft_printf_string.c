@@ -14,6 +14,11 @@
 
 int	ft_printf_string(char *arg)
 {
+	if (!arg)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	size_t	len;
 
 	len = ft_strlen(arg);

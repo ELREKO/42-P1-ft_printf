@@ -13,10 +13,16 @@ void	test_c(void)
 	int	x, y;
 	x = 0;
 	y = 0;
-	printf("\n----------- TEST: %%c -----------\n\n");
+	ft_printheader("Test %c");
 	printf("Testing: (\"\\t%%c\\n\", 'a')\n");
-	x +=    printf("  Ft\t:\t%c\n", 'a');
-	y += ft_printf("  Ft\t:\t%c\n", 'a');
+	x +=    printf("  Ft\t:\t%c\n", 'x');
+	y += ft_printf("  Ft\t:\t%c\n", 'x');
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\"%%c\", '0')\n");
+	x +=    printf("%c", '0'); printf("\n");
+	y += ft_printf("%c", '0'); printf("\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 	x = 0;
 	y = 0;
@@ -26,88 +32,129 @@ void	test_c(void)
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
+void    test_s(void)
+{
+    int	x, y;
+	x = 0;
+	y = 0;
+    ft_printheader("Test %s");
+    printf("Testing: (\"\\t%%s\\n\", 'TEST')\n");
+	x +=    printf("  Ft\t:\t%s\n", "TEST");
+	y += ft_printf("  Ft\t:\t%s\n", "TEST");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\" NULL %%s NULL %%s\", Test , Test)\n");
+	x +=    printf(" NULL %s NULL %s", "Test", "Test"); printf("\n");
+	y += ft_printf(" NULL %s NULL %s", "Test", "Test"); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+}
+
+void    test_i(void)
+{
+    int	x, y;
+	x = 0;
+	y = 0;
+    ft_printheader("Test %i");
+    printf("Testing: (\"\\t%%i\\n\", 9)\n");
+	x +=    printf(" %i ", 9); printf("\n");
+	y += ft_printf(" %i ", 9); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%i\\n\", 10)\n");
+	x +=    printf(" %i ", 10); printf("\n");
+	y += ft_printf(" %i ", 10); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+    x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%i\\n\", 100)\n");
+	x +=    printf(" %i ", 100); printf("\n");
+	y += ft_printf(" %i ", 100); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+    x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%i\\n\", 1001)\n");
+	x +=    printf(" %i ", 1001); printf("\n");
+	y += ft_printf(" %i ", 1001); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+}
+
+void    test_u(void)
+{
+    int	x, y;
+	x = 0;
+	y = 0;
+    ft_printheader("Test %u");
+    printf("Testing: (\"\\t%%u\\n\", 9)\n");
+	x +=    printf(" %u ", 9); printf("\n");
+	y += ft_printf(" %u ", 9); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%u\\n\", -1)\n");
+	x +=    printf(" %u ", -1); printf("\n");
+	y += ft_printf(" %u ", -1); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+    x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%u\\n\", 100)\n");
+	x +=    printf(" %u ", 100); printf("\n");
+	y += ft_printf(" %u ", 100); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+    x = 0;
+	y = 0;
+	printf("Testing: (\"\\t%%u\\n\", 1001)\n");
+	x +=    printf(" %u ", 1001); printf("\n");
+	y += ft_printf(" %u ", 1001); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+}
+
+void    test_percent(void)
+{
+    int	x, y;
+	x = 0;
+	y = 0;
+    ft_printheader("Test %%");
+    printf("Testing: (\"\\t%%%%\\n\")\n");
+	x +=    printf(" %%%% "); printf("\n");
+	y += ft_printf(" %%%% "); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+	x = 0;
+	y = 0;
+    printf("Testing: (\"\\t%%%%%%%%\\n\")\n");
+	x +=    printf(" %%%%%%%% "); printf("\n");
+	y += ft_printf(" %%%%%%%% "); printf("\n");
+	printf("Printf = %d, ft_printf = %d\n\n", x, y);
+}
+
+
+
 int main(void)
 {
-//return Value printf
-ft_printheader("Test %c");
-    char c_char = 'c';
-    printf("   printf (b): |%c|", c_char);    printf("\n");
-    ft_printf("ft_printf (b): |%c|", c_char);     ft_printf("\n");
-    c_char = 't';
-    printf("   printf (0): |%c|", c_char);     printf("\n");
-    ft_printf("ft_printf (0): |%c|", c_char);     ft_printf("\n");
-    c_char = 'x';
-    printf("   printf (p): |%c|", '0'+256);     printf("\n");
-    ft_printf("ft_printf (p): |%c|",'0'+256);     ft_printf("\n");
-    printf("   printf (p): |%c|", '0'-256);     printf("\n");
-    ft_printf("ft_printf (p): |%c|",'0'-256);     ft_printf("\n");
-    test_c();
+    //test_c();
+
+    //test_s();
+
+    //test_p(void);
+
+    //test_i();
+
+    //test_u();
+
+   // test_percent();
+
+    int num = 42;
+    int *ptr = &num;  // Speicheradresse von 'num' in 'ptr' speichern
+
+    printf("Die Speicheradresse von 'num' ist: %p\n", (void*)&num);
+    printf("Der Wert von 'ptr' ist: %p\n \n \n", (void*)ptr);
+    void *Test = "Test";
+    printf("Pointer printf %p\n", Test);
+    ft_printf("%p\n", Test);
 
 
-ft_printheader("Test %s");
-    char *s_str = "TEST";
-    printf("   printf: |%s|", s_str );    printf("\n");
-    ft_printf("ft_printf: |%s|", s_str );     ft_printf("\n");
-    s_str = "Test Test";
-    printf("   printf: |%s|", s_str );     printf("\n");
-    ft_printf("ft_printf: |%s|:", s_str );     ft_printf("\n");
-    s_str = "Test Test Test";
-    printf("   printf: |%s|", s_str );     printf("\n");
-    ft_printf("ft_printf: |%s|", s_str );     ft_printf("\n");
-
-ft_printheader("Test %p");
-    void *ptr = "Test"; 
-    printf   ("   Printf: |%p|", ptr);   printf("\n");
-    ft_printf("ft_printf: |%p|", ptr);   ft_printf("\n");
-    ptr = "NULL"; 
-    printf   ("   Printf: |%p|", ptr);   printf("\n");
-    ft_printf("ft_printf: |%p|", ptr);   ft_printf("\n");
-
-
-ft_printheader("Test %d");
-    int d_int = INT_MAX;
-    printf("   printf: |%d|", d_int );    printf("\n");
-    ft_printf("ft_printf: |%d|", d_int  );     ft_printf("\n");
-    d_int = -7;
-    printf("   printf: |%d|", d_int );    printf("\n");
-    ft_printf("ft_printf: |%d|", d_int  );     ft_printf("\n");
-
-ft_printheader("Test %i");
-    int i_int = INT_MIN;
-    printf("   printf: |%i|", i_int );    printf("\n");
-    ft_printf("ft_printf: |%i|", i_int   );     ft_printf("\n");
-    i_int = -9;
-    printf("   printf: |%i|", i_int );    printf("\n");
-    ft_printf("ft_printf: |%i|", i_int   );     ft_printf("\n");
-
-ft_printheader("Test %u");
-    
-    unsigned int un_int = UINT_MAX;
-    printf("   printf: |%u|", un_int );    printf("\n");
-    ft_printf("ft_printf: |%u|", un_int   );     ft_printf("\n"); 
-    un_int = -2;
-    printf("   printf: |%u|", un_int );    printf("\n");
-    ft_printf("ft_printf: |%u|", un_int   );     ft_printf("\n");
-
-
-ft_printheader("Test %x (lower)");
-    
-    unsigned int x_int = 0xFF;
-    printf("   printf: |%x|", x_int );   printf("\n");
-    ft_printf("ft_printf: |%x|", x_int   );     ft_printf("\n");
-
-
-ft_printheader("Test %X (upper)");
-    
-    unsigned int X_int = 0xff;
-    printf("   printf: |%X|", X_int );    printf("\n");
-    ft_printf("ft_printf: |%X|", X_int   );     ft_printf("\n");
-
-ft_printheader("Test %% ");
-
-    printf("   printf: |%%|");    printf("\n");
-    ft_printf("ft_printf: |%%|");     ft_printf("\n");
+printf("%lu\n", -ULONG_MAX );
 
 return (0);
-
 }
