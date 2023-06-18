@@ -12,12 +12,11 @@
 
 #include "ft_printf.h"
 
-static int	count_nummer(long long arg, int base)
+static int	count_nbr(unsigned long long arg, unsigned long long base)
 {
 	int	count;
 
 	count = 0;
-	//printf("\nI am in Count arg: %lld \n", arg);
 	while (arg > base)
 	{
 		arg = arg / base;
@@ -32,22 +31,14 @@ int	write_out_nbr(unsigned long long arg, char *base)
 {
 	char	ch;
 	int		len;
-	unsigned int		base_len;
+	unsigned long long		base_len;
 
 	base_len = ft_strlen(base);
-	len = count_nummer(arg, base_len);
-	//printf("\nbase_len: %d\n", base_len);
-	while (arg > base_len)
+	len = count_nbr(arg, base_len);
+	while (arg >= base_len)
 	{
-		write_out_nbr(arg / base_len, base); //printf("\n");
+		write_out_nbr(arg / base_len, base); 
 		arg = arg - ((arg / base_len) * base_len);
-	}
-	if (arg == base_len)
-	{
-		ch = base[arg / base_len];
-		write(1, &ch, 1);
-		ch = base[arg % base_len];
-		write(1, &ch, 1);
 	}
 	if (arg < base_len)
 	{

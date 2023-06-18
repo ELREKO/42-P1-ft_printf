@@ -149,9 +149,9 @@ int main(void)
 
     //test_s();
 
-    test_p();
+    //test_p();
 
-    //test_i();
+    test_i();
 
     //test_u();
 

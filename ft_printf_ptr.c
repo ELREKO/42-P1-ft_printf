@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int	ft_printf_ptr(unsigned long long arg)
+int	ft_printf_ptr(void *arg)
 {
 	int len;
-	//unsigned long long ptr_value;
-	//ptr_value = (unsigned long long) arg;
+	unsigned long long ptr_value;
+	ptr_value = (unsigned long long)arg;
 	if (!arg)
 		return (ft_printf_string("(nil)"));
 	write(1, "0x", 2);
-	len = write_out_nbr(arg, "0123456789abcdef");
+	len = write_out_nbr(ptr_value, "0123456789abcdef");
 	return (len + 2);	
 }

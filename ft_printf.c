@@ -21,7 +21,7 @@ static int	ft_flagcheck(size_t ui_count, const char *str_give, va_list ap)
 	if (str_give[ui_count] == 's')
 		len = ft_printf_string(va_arg(ap, char *));
 	if (str_give[ui_count] == 'p')
-		len = ft_printf_ptr(va_arg(ap, unsigned long long));
+		len = ft_printf_ptr(va_arg(ap, void *));
 	if (str_give[ui_count] == 'd')
 		len = ft_printf_int(va_arg(ap, int));
 	if (str_give[ui_count] == 'i')
