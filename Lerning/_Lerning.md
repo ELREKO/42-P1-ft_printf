@@ -22,4 +22,11 @@ set the error
 
 ```
 
+I have 2 failures
+in my francinette test.
 
+??
+
+Unfortunately I can't explain why.
+
+I convert the void* to unsigned long long and print it with the unsigned int function.
