@@ -40,18 +40,25 @@ static int	ft_flagcheck(size_t ui_count, const char *str_give, va_list ap)
 	return (len);
 }
 
-static int	ft_inner_ceck(const char *str_give, size_t ui_count,
+static int	ft_inner_ceck(const char *str_give, size_t *ui_count,
 		int i_len, va_list ap)
 {	
 	size_t	i_check_flags;
 
 	i_check_flags = 0;
+	if (str_give[*ui_count] == '\0')
+		return (-1);
 	while (i_check_flags < ft_strlen("cspdiuxX%"))
 	{
-		if (str_give[ui_count] == "cspdiuxX%"[i_check_flags++])
-			i_len = ft_flagcheck(ui_count, str_give, ap) + i_len;
+		if (str_give[*ui_count] == "cspdiuxX%"[i_check_flags++])
+		{
+			i_len = ft_flagcheck(*ui_count, str_give, ap) + i_len;
+			return (i_len);
+		}
 	}
-	return (i_len);
+	*ui_count = *ui_count - 1;
+	write(1, "%", 1);
+	return (i_len + 2);	
 }
 
 static int	ft_write(const char *str_give, va_list ap)
@@ -69,7 +76,9 @@ static int	ft_write(const char *str_give, va_list ap)
 		{
 			ui_count++;
 			i_spec_write++;
-			i_len = ft_inner_ceck(str_give, ui_count, i_len, ap);
+			i_len = ft_inner_ceck(str_give, &ui_count, i_len, ap);
+			if (i_len == -1)
+				return (-1);
 			ui_count++;
 		}
 		if (str_give[ui_count] == '\0')
@@ -86,11 +95,15 @@ int	ft_printf(const char *format, ...)
 	int		len;
 
 	len = 0;
+	if (!format)
+		return (-1);
 	str_give = ft_strdup(format);
 	if (str_give != NULL)
 	{
 		va_start(ap, format);
 		len = ft_write(str_give, ap);
+		if (len == -1)
+				return (-1);
 		va_end(ap);
 	}
 	free(str_give);
