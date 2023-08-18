@@ -23,5 +23,10 @@ Not implemented
 ### Lib authorized
 Yes --> include at the folder libft
 
+### Evaluation Question 
+![1](/pic/ft_printf_1.jpeg)
+![2](pic/ft_printf_2.jpeg)
+
 ### goal
--- 
+![1](pic/EVAL1.png)
+![2](pic/EVAL2.png)
